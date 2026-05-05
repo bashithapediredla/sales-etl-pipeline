@@ -1,48 +1,58 @@
-# Sales ETL Pipeline
+# Crypto Data Pipeline (API → Azure → Database)
 
 ## Overview
-This project demonstrates a simple ETL (Extract, Transform, Load) pipeline using Python.
+This project implements an end-to-end data pipeline that extracts real-time cryptocurrency data from an API, stores raw data in Azure Blob Storage, processes it using Python, and loads it into a structured SQLite database for querying.
 
-## Process
-- Extract data from CSV
-- Transform data (handle missing values, remove duplicates, feature engineering)
-- Load into SQLite database
-- Perform aggregation queries
+The pipeline simulates a real-world data engineering workflow with cloud storage, transformation, and incremental data ingestion.
+
+---
+
+## Pipeline Architecture
+API → Azure Blob Storage → Python Processing → SQLite Database → Query
+
+---
 
 ## Features
-- Data validation
-- Incremental loading
-- Error handling
+- Real-time data extraction from public API
+- Cloud storage using Azure Blob Storage
+- Data transformation and timestamping
+- Incremental data insertion into database
+- Secure configuration using environment variables (.env)
+- Error handling for API failures
 
-## Technologies Used
-- Python
-- Pandas
-- SQLite
+---
 
 ## Key Design Decisions
+- Used Azure Blob Storage to simulate a raw data layer
+- Separated configuration using `.env` to avoid hardcoding secrets
+- Added timestamps to track time-series data
+- Combined scripts into a single orchestrated pipeline
 
-- Missing values handled using mean and default date to maintain data consistency
-- Incremental loading implemented to avoid duplicate data insertion
-- SQLite used for simplicity and lightweight storage
+---
 
 ## Sample Output
+(1, 67000, '2026-05-05 12:30:00')  
+(2, 67000, '2026-05-05 12:35:00')
 
-Example aggregated result:
+---
 
-| Year | Total Sales |
-|------|------------|
-| 2024 | 103000     |
+## Tech Stack
+- Python
+- SQLite
+- Azure Blob Storage
+- REST API
+- python-dotenv
+
+---
 
 ## Future Improvements
+- Automate pipeline using scheduler (cron/Airflow)
+- Extend to multiple cryptocurrencies
+- Replace SQLite with cloud database
+- Add data validation layer
 
-- Use real-time API data instead of static CSV
-- Scale pipeline using distributed tools (e.g., PySpark)
-- Add scheduling for automated execution
+---
 
 ## How to Run
-pip install pandas  
-python etl.py
-
-## Output
-- Cleaned data
-- Total sales by year
+pip install requests azure-storage-blob python-dotenv  
+python pipeline.py
