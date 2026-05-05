@@ -1,0 +1,6 @@
+order_id,date,product,amount,city
+1,2024-01-01,Laptop,50000,Hyderabad
+2,2024-01-02,Phone,20000,Bangalore
+3,,Tablet,15000,Chennai
+4,2024-01-04,Laptop,,Mumbai
+5,2024-01-05,Phone,18000,Delhi
